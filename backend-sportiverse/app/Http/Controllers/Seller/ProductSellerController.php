@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Controllers\Controller;
 
-class ProductController extends Controller
+class ProductSellerController extends Controller
 {
     public function index()
     {
@@ -25,8 +26,22 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|image|max:2048', // Max 2MB
-            'category' => 'required|in:Football,Basketball,Tennis,Athletics,Padel,Running,Other',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'category_id' => 'required|exists:categories,id',
+        ], [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'name.max' => 'El campo nombre no puede ser mayor que :max caracteres.',
+            'price.required' => 'El campo precio es obligatorio.',
+            'price.numeric' => 'El campo precio debe ser numérico.',
+            'price.min' => 'El campo precio debe ser mayor o igual que :min.',
+            'stock.required' => 'El campo stock es obligatorio.',
+            'stock.integer' => 'El campo stock debe ser un número entero.',
+            'stock.min' => 'El campo stock debe ser mayor o igual que :min.',
+            'image.image' => 'El archivo debe ser una imagen.',
+            'image.mimes' => 'El archivo debe tener uno de los siguientes formatos: jpeg, png, jpg, gif.',
+            'image.max' => 'El tamaño máximo del archivo es :max kilobytes.',
+            'category_id.required' => 'El campo categoría es obligatorio.',
+            'category_id.exists' => 'Debes elegir una categoría existente.',
         ]);
 
         if ($request->hasFile('image')) {
@@ -59,8 +74,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|image|max:2048', // Max 2MB
-            'category' => 'required|in:Football,Basketball,Tennis,Athletics,Padel,Running,Other',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('image')) {

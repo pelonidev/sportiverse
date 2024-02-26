@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class OrderDetailController extends Controller
+
+class OrderDetailCustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
