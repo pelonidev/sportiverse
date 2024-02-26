@@ -18,18 +18,13 @@ class Product extends Model
         'category',
     ];
 
-    public function addedBy()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function discounts()
+    public function category()
     {
-        return $this->belongsToMany(Discount::class);
+        return $this->belongsTo(Category::class);
     }
 }
