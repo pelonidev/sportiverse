@@ -11,6 +11,31 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryAdminController extends Controller
 {
+    public function index()
+    {
+        // Verificar si el usuario tiene el rol requerido
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+            $categories = Category::all();
+            return response()->json($categories, $categories->isEmpty() ? 204 : 200);
+        }
+        return response()->json([
+            'status' => 'KO',
+            'message' => 'You are not allowed to view all category details.'
+        ], 403);
+    }
+
+    public function show(Category $category)
+    {
+        // Verificar si el usuario tiene el rol requerido
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+            return response()->json($category);
+        }
+        return response()->json([
+            'status' => 'KO',
+            'message' => 'You are not allowed to view the category details.'
+        ], 403);
+    }
+
     public function store(Request $request)
     {
         // Verificar si el usuario tiene el rol requerido

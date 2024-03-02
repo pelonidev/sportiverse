@@ -41,7 +41,7 @@ class AuthController extends Controller
             ], 422); // Código de estado 422 para indicar una solicitud inválida
         }
 
-        // Validación
+        // Validación pasó, crear el usuario
         $input = $request->all();
         if (!isset($input['role']) || is_null($input['role'])) {
             $input['role'] = 'customer';
@@ -50,15 +50,14 @@ class AuthController extends Controller
 
         $user = User::create($input);
         $user->assignRole($input['role']);
-        $response['status'] = 'OK';
-        $response['message'] = 'Signed up successfully';
 
-
+        // Usuario creado exitosamente, responder con un mensaje de éxito
         return response()->json([
             'status' => 'OK',
             'message' => 'Signed up successfully'
         ], 200);
     }
+
 
 
     public function login(Request $request)

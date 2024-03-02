@@ -10,12 +10,22 @@ class ProductPublicController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('status', 1)->get(['id', 'name', 'description', 'category_id', 'price', 'stock', 'image']);
+
         return response()->json($products, $products->isEmpty() ? 204 : 200);
     }
 
     public function show(Product $product)
-    {
-        return response()->json($product);
+    {    // Verificar si el producto tiene status = 1
+        if ($product->status === 1) {
+            // Devolver solo los campos especificados si el producto está activo
+            return response()->json($product->only(['id', 'name', 'description', 'category_id', 'price', 'stock', 'image']));
+        } else {
+            // Si el producto no está activo, devolver un mensaje de error
+            return response()->json([
+                'status' => 'KO',
+                'message' => 'The product is not available.'
+            ], 403);
+        }
     }
 }

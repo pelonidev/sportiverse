@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductSellerController extends Controller
 {
@@ -12,11 +13,6 @@ class ProductSellerController extends Controller
     {
         $products = Product::all();
         return view('products.index', compact('products'));
-    }
-
-    public function create()
-    {
-        return view('products.create');
     }
 
     public function store(Request $request)
@@ -59,7 +55,14 @@ class ProductSellerController extends Controller
 
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        // Verificar si el usuario tiene el rol requerido
+        if (Auth::check() && Auth::user()->hasRole('seller')) {
+            return response()->json($product);
+        };
+        return response()->json([
+            'status' => 'KO',
+            'message' => 'You are not allowed to view this product.'
+        ], 403);
     }
 
     public function edit(Product $product)
