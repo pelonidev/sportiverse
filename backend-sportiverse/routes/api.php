@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\ProductPublicController;
 use App\Http\Controllers\Public\CategoryPublicController;
@@ -9,6 +8,8 @@ use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Seller\ProductSellerController;
+use App\Http\Controllers\Seller\UserSellerController;
+use App\Http\Controllers\Seller\OrderSellerController;
 use App\Http\Controllers\Customer\OrderCustomerController;
 use App\Http\Controllers\Customer\OrderDetailCustomerController;
 
@@ -43,19 +44,16 @@ Route::prefix('v1')->group(function () {
 
         // role customer
         Route::apiResource('/customer/orders', OrderCustomerController::class);
+        Route::get('/customer/orders/{order}', [OrderDetailCustomerController::class, 'show']);
 
         // role seller
         Route::apiResource('/seller/products', ProductSellerController::class);
+        Route::apiResource('/seller/users', UserSellerController::class);
+        Route::apiResource('/seller/orders', OrderSellerController::class);
 
         // role admin
         Route::apiResource('/admin/users', UserAdminController::class);
-
-        Route::apiResource('/admin/categories', CategoryAdminController::class)->except([
-            'index', 'show',
-        ]);
-
-        Route::apiResource('/admin/products', ProductAdminController::class)->except([
-            'index', 'show', 'store'
-        ]);
+        Route::apiResource('/admin/categories', CategoryAdminController::class);
+        Route::apiResource('/admin/products', ProductAdminController::class)->except(['store']);
     });
 });
