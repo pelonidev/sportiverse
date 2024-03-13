@@ -79,10 +79,21 @@ class AuthController extends Controller
 
         if (auth()->attempt(['username' => $request->username, 'password' => $request->password])) {
             $user = auth()->user();
-            $response['token'] = $user->createToken('token')->plainTextToken;
-            $response['user'] = $user;
-            $response['status'] = 'OK';
-            $response['message'] = 'Logged in successfully';
+
+            $role = $user->roles->first();
+
+            $response = [
+                'token' => $user->createToken('token')->plainTextToken,
+                'user' => [
+                    'full_name' => $user->full_name,
+                    'email' => $user->email,
+                    'username' => $user->username,
+                ],
+                'status' => $user->status,
+                'role' => $role->id,
+                'status' => 'OK',
+                'message' => 'Logged in successfully'
+            ];
         } else {
             // Si las credenciales no son válidas, retornar un mensaje de error
             return response()->json([
