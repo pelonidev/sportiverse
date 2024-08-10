@@ -1,0 +1,31 @@
+.header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .menu ul {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+  }
+  
+  .header .logo {
+    margin-bottom: 40px;
+  }
+  
+  .header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  li {
+    margin-right: 20px;
+    list-style: none;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
