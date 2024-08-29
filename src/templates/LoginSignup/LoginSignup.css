@@ -1,0 +1,84 @@
+.login-form h1, .register-form h1 {
+    margin-bottom: 2em;
+}
+
+.register-form{
+    width: 80%;
+    margin: auto;
+}
+
+.register-form-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-form-column{
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+}
+
+input[type='radio']{
+    margin: 1em
+}
+
+input[type='submit']{
+    width: 100%;
+    padding: 1em;
+}
+
+fieldset{
+    margin-bottom: 1em;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    min-width: 200px;
+}
+
+.link-no-user-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.link-no-user{
+    border: none;
+    font-size: 0.9em;
+    background-color: transparent;
+    color:rgb(65, 107, 199);
+    cursor: pointer;
+}
+
+.link-no-user:hover{
+    text-decoration: underline;
+}
+
+.errors{
+    margin: auto;
+    border-radius: 6px;
+    width: 80%;
+    padding: 1em;
+    border: 1px solid #680000;
+    background-color: rgba(207, 23, 23,0.5);
+    color: #680000;
+}
+
+.errors-login{
+    width: 40%;
+}
+
+@media (max-width: 900px) {
+    .register-form-content{
+        flex-direction: column;
+    }
+    .register-form-column{
+        width: 100%;
+    }
+    .login-form{
+        width: 60%;
+    }
+}

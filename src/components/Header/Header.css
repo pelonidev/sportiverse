@@ -1,31 +1,93 @@
-.header {
-    background-color: #3498db;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  .menu ul {
+nav{
     display: flex;
-    justify-content: space-around;
-    margin: 0;
-  }
-  
-  .header .logo {
-    margin-bottom: 40px;
-  }
-  
-  .header .logo h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  li {
-    margin-right: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1b3039;
+    padding: 20px 80px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#navbar li{
     list-style: none;
-  }
-  
-  a {
-    color: #fff;
+    padding: 0 20px;
+    position: relative;
+}
+#navbar li a, .logout-btn{
+    background-color: transparent;
     text-decoration: none;
-  }
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+#navbar li a:hover, .logout-btn:hover{
+    color:#17cf97
+}
+#navbar li a::after, .logout-btn::after{
+    content:'';
+    width: 30%;
+    height: 2px;
+    background-color: rgba(23, 207, 151, 0);
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+    transition: 0.3 ease-in-out;
+}
+#navbar li a:hover::after, .logout-btn:hover::after{
+    background-color: rgba(23, 207, 151, 1);
+}
+
+.header .logo{
+    cursor: pointer;
+    color: #f9fbfc;
+    font-size: 24px;
+    font-weight: 600;
+}
+.icon-sportiverse{
+    height: 24px;
+    margin-bottom: 5px;
+}
+#responsive-nav-btn{
+    cursor: pointer;
+    display: none;
+}
+#responsive-nav-btn svg {
+    color:#fff;
+    font-size: 24px;
+}
+
+@media screen and (max-width: 1000px) {
+    #navbar{
+        z-index: 100;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 72px;
+        right: -800px;
+        width: 70%;
+        height: calc(100vh - 125px);
+        background-color: #1b3039;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px 0 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+    nav{
+        padding: 20px 40px;
+    }
+    #navbar.opened{
+        right: 0px;
+    }
+
+    #navbar li{
+        margin-bottom: 25px;
+    }
+    #responsive-nav-btn{
+      display: block;  
+    }
+}

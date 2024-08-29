@@ -1,0 +1,40 @@
+.account-li input{
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    border-bottom: 1px solid #1b3039;
+    padding: 0.2em;
+    width: 100%;
+}
+
+.account-li input:focus {
+    border-radius: 0;
+    border-bottom: 2px solid #1b3039;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+input[type='submit']{
+    width: 100%;
+    padding: 1em;
+}
+
+.feedback-container{
+    display: flex;
+    margin: auto;
+    padding: 1em;
+    width: 100%;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.error{
+    border: 1px solid #680000;
+    background-color: rgba(207, 23, 23,0.5);
+    color: #680000;
+}
+
+.success{
+    border: 1px solid #005c00;
+    background-color: rgba(54, 207, 23, 0.5);
+    color: #005c00
+}

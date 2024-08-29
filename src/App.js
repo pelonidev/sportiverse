@@ -1,9 +1,11 @@
 import Header from './components/Header/Header';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from'react-router-dom';
-import ProductList from './components/templates/ProductList';
-import ProductForm from './components/templates/ProductForm';
-import './index.css';
+import Home from './templates/Home/Home';
+import MyAccount from './templates/MyAccount/MyAccount';
+import Products from './templates/Products/Products';
+import LoginSignup from './templates/LoginSignup/LoginSignup';
+import './App.css';
 
 function App() {
   return (
@@ -12,13 +14,14 @@ function App() {
         <Header />
         <main className="main">
           <Routes>
-            <Route path="/" element={<ProductList />} />
-            <Route path="/products/new" element={<ProductForm />} />
-            <Route path="/products/:id/edit" element={<ProductForm />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/cuenta" element={<MyAccount />} />
+            <Route path="/productos" element={<Products />} />
+            <Route path="/iniciar-sesion" element={<LoginSignup />} />
           </Routes>
         </main>
         <footer className="footer">
-          <p>&copy; 2023 Sportiverse</p>
+          <p>&copy; 2024 Sportiverse</p>
         </footer>
       </div>
     </BrowserRouter>
