@@ -1,9 +1,9 @@
 .slider{
   position: absolute;
-  bottom: 53px;
+  bottom: 54px;
   left: 0;
   overflow: hidden;
-  height: calc(100vh - 126px);
+  height: calc(100vh - 127px);
 }
 .slider ul{
     display: flex;

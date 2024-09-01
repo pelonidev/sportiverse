@@ -10,6 +10,12 @@
 
 .main {
   padding: 2em;
-  min-height: calc(100vh - 126px);
+  min-height: calc(100vh - 127px);
   background-color: #c2d1d8;
+}
+
+@media screen and (max-width: 530px) {
+    .main{
+      padding: 1em;
+    }
 }

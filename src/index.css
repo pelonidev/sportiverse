@@ -41,7 +41,7 @@ input, button, textarea, select{
   border-radius: 6px;
 }
 
-input, textarea {
+input, textarea, select {
   margin: 0.5em 0 1em;
   padding: 0.5em;
 }
@@ -63,6 +63,18 @@ input[type='submit']{
 
 input[type='submit']:disabled{
   cursor: default
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    min-width: 200px;
 }
 
 @media (prefers-reduced-motion: reduce){

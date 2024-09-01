@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import ProductList from '../../components/ProductList/ProductList';
-import ProductForm from '../../components/ProductForm/ProductForm';
+import { addToCart } from '../../redux/cartSlice'
+import SportiverseServices from '../../services'
 
 function Products() {
-  const userStore = useSelector(state => state.user);
-  const isSeller = userStore.role === 2;
+  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const cartStore = useSelector(state => state.cart);
+
   useEffect(() => {
-    fetch('http://localhost:8000/api/v1/public/categories')
-     .then(response => response.json())
-     .catch(error => console.error(error));
+    SportiverseServices.getProducts()
+      .then(data => {
+        console.log({data})
+        setProducts(data)})
   }, []);
+  
+  const handleAddToCart = (product) =>{
+    dispatch(addToCart(product));
+  }
+
   return (
     <div>
-      <h1>Productos</h1>
-      {isSeller && <ProductForm />}
-      <ProductList/>
+      <h2>Lista Productos</h2>
+      <ul style={{marginTop: '1em'}}>
+        {products.length > 0 && products.map(product => (
+          <li key={product.id} style={{display: 'flex', flexDirection: 'column'}}>
+            <img src={product.image_url} style={{width: '300px'}}/>
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <p>Precio: {product.price}</p>
+            <button style={{cursor: 'pointer', padding: '0.5em'}} onClick={()=>handleAddToCart(product)}>Añadir al carrito</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
